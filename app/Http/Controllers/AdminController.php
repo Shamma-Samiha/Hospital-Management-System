@@ -21,9 +21,19 @@ class AdminController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
-        }
+           if (Auth::attempt($credentials)) {
+              $user = Auth::user();
+
+              if ($user->role_id == 1) {
+                return redirect()->intended('admin/dashboard');}
+             elseif ($user->role_id == 2) {
+                return redirect()->intended('user/dashboard');}
+           else {
+              Auth::logout(); // unexpected role
+              return redirect('/login')->with('error', 'Unauthorized role.');
+            }
+}
+
 
         return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
     }

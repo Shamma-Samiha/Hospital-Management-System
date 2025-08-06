@@ -80,7 +80,7 @@
                          <div class="center"><button type="submit">Submit</button></div>
                       </div>
                       @if (session()->has('message'))
-                      <script> alert(' {{ session('message') }}') </script>
+                      <script> alert(" {{ session('message') }}"); </script>
 
                       @endif
                    </div>

@@ -65,17 +65,17 @@
                         <div class="info-inner">
                             <span class="icontop"><img src="{{ config('app.url') }}images/phone-icon.png" alt="#"></span>
                             <span class="iconcont"><a
-                                    href="tel:{{ $settings["business_phone"] ?? '123 123 123' }}">{{ $settings["business_phone"] ?? '123 123 123' }}</a></span>
+                                    href="tel:{{ $settings["business_phone"] ?? '+880 1234543234' }}">{{ $settings["business_phone"] ?? '+880 1234543234' }}</a></span>
                         </div>
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                             <span class="iconcont"><a data-scroll
-                                    href="mailto:{{ $settings["business_email"] ?? 'tauseed@test.com' }}">{{ $settings["business_email"] ?? 'tauseed@test.com' }}</a></span>
+                                    href="mailto:{{ $settings["business_email"] ?? 'carebase@gmail.com' }}">{{ $settings["business_email"] ?? 'carebase@gmail.com' }}</a></span>
                         </div>
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
                             <span class="iconcont"><a data-scroll href="#">Daily:
-                                    {{ $settings["working_horse"] ?? '7:00 AM - 9:00 PM' }}</a></span>
+                                    {{ $settings["working_horse"] ?? '7:00 AM - 11:30 PM' }}</a></span>
                         </div>
                     </div>
                 </div>

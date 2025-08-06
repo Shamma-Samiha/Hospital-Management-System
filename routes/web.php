@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
+Route::post('/register', [UserController::class, 'register']);
 
 // testing gpush
 Route::get('/', function () {
@@ -23,6 +25,10 @@ Route::get('/app', function () {
 });
 
 Route::view('/services', 'services');
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+})->middleware('auth');
+
 
 // Route::get('/admin/',[AdminController::class,'index'])->name("admins");
 
