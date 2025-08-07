@@ -53,7 +53,7 @@
     <header>
         <div class="header-top wow fadeIn">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" style="height: 90px;">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" style="height: 90px; margin-left: 15px; margin-top: -10px;">
                 <img 
                    src="{{ isset($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/logo.png') }}" 
                    alt="logo image"
@@ -109,7 +109,7 @@
                            @endif
                              <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="btn btn-danger" style="margin-top:10px; margin-left:10px;">Logout</a></li>
+                                class="nav-link">Logout</a></li>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                               </form>
@@ -191,6 +191,15 @@
         }
 
     </script>
+    <style>
+        .nav.navbar-nav li a[href*="logout"] {
+            color: #ffc107 !important;
+            font-weight: 500;
+        }
+        .nav.navbar-nav li a[href*="logout"]:hover {
+            color: #e0a800 !important;
+        }
+    </style>
 </body>
 
 </html>
