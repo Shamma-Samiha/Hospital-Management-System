@@ -184,7 +184,28 @@
                 </div>
              </div>
           </div>
-          @livewire('appointmentform')
+          @auth
+              @livewire('appointmentform')
+          @else
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                  <div class="appointment-form">
+                      <h3><span>🔒</span> Book Appointment</h3>
+                      <div class="form">
+                          <div class="text-center" style="padding: 40px 20px;">
+                              <h4 style="color: #007bff; margin-bottom: 20px;">Login Required</h4>
+                              <p style="color: #666; margin-bottom: 30px;">Please log in to book an appointment with our doctors.</p>
+                              <a href="{{ route('login') }}" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">
+                                  <i class="fa fa-sign-in-alt"></i> Login to Book
+                              </a>
+                              <div style="margin-top: 20px;">
+                                  <p style="color: #999; font-size: 14px;">Don't have an account?</p>
+                                  <a href="{{ route('register') }}" style="color: #007bff; text-decoration: underline;">Register here</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          @endauth
        </div>
     </div>
  </div>
@@ -200,63 +221,63 @@
       </div>
 
       <div class="row dev-list text-center">
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
-              <div class="widget clearfix">
-                  <img src="images/doctor_01.jpg" alt="" class="img-responsive img-rounded">
-                  <div class="widget-title">
-                      <h3>Soren Bo Bostian</h3>
-                      <small>Clinic Owner</small>
-                  </div>
-                  <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
+          @forelse($doctors as $index => $doctor)
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="{{ 0.2 + ($index * 0.2) }}s">
+                  <div class="widget clearfix">
+                      @if($doctor->image)
+                          <img src="{{ asset('storage/' . $doctor->image) }}" alt="{{ $doctor->name }}" class="img-responsive img-rounded" style="width: 200px; height: 200px; object-fit: cover;">
+                      @else
+                          <img src="images/doctor_01.jpg" alt="{{ $doctor->name }}" class="img-responsive img-rounded" style="width: 200px; height: 200px; object-fit: cover;">
+                      @endif
+                      <div class="widget-title">
+                          <h3>{{ $doctor->name }}</h3>
+                          <small>{{ $doctor->specialty }}</small>
+                          @if($doctor->qualification)
+                              <br><small class="text-muted">{{ $doctor->qualification }}</small>
+                          @endif
+                      </div>
+                      <!-- end title -->
+                      <p>
+                          @if($doctor->bio)
+                              {{ Str::limit($doctor->bio, 100) }}
+                          @else
+                              Experienced {{ $doctor->specialty }} specialist with expertise in patient care and treatment.
+                          @endif
+                      </p>
+                      
+                      <div class="doctor-info">
+                          <p><strong>Room:</strong> {{ $doctor->room }}</p>
+                          <p><strong>Visiting Hours:</strong> {{ $doctor->visiting_hours }}</p>
+                          <p><strong>Available Days:</strong> 
+                              @if(is_array($doctor->visiting_days))
+                                  {{ implode(', ', $doctor->visiting_days) }}
+                              @else
+                                  {{ $doctor->visiting_days }}
+                              @endif
+                          </p>
+                          @if($doctor->email)
+                              <p><strong>Email:</strong> {{ $doctor->email }}</p>
+                          @endif
+                      </div>
 
-                  <div class="footer-social">
-                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                      <div class="footer-social">
+                          <a href="#" class="btn grd1"><i class="fa fa-envelope"></i></a>
+                          @if($doctor->phone)
+                              <a href="tel:{{ $doctor->phone }}" class="btn grd1"><i class="fa fa-phone"></i></a>
+                          @endif
+                          <a href="#" class="btn grd1"><i class="fa fa-calendar"></i></a>
+                          <a href="#" class="btn grd1"><i class="fa fa-info"></i></a>
+                      </div>
+                  </div><!--widget -->
+              </div><!-- end col -->
+          @empty
+              <div class="col-12">
+                  <div class="alert alert-info text-center">
+                      <h4>No Doctors Available</h4>
+                      <p>Our medical team information will be displayed here once doctors are added to the system.</p>
                   </div>
-              </div><!--widget -->
-          </div><!-- end col -->
-
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
-              <div class="widget clearfix">
-                  <img src="images/doctor_02.jpg" alt="" class="img-responsive img-rounded">
-                  <div class="widget-title">
-                      <h3>Bryan Saftler</h3>
-                      <small>Internal Diseases</small>
-                  </div>
-                  <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
-
-                  <div class="footer-social">
-                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
-                  </div>
-              </div><!--widget -->
-          </div><!-- end col -->
-
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn">
-              <div class="widget clearfix">
-                  <img src="images/doctor_03.jpg" alt="" class="img-responsive img-rounded">
-                  <div class="widget-title">
-                      <h3>Matthew Bayliss</h3>
-                      <small>Orthopedics Expert</small>
-                  </div>
-                  <!-- end title -->
-                  <p>Hello guys, I am Soren from Sirbistana. I am senior art director and founder of Violetta.</p>
-
-                  <div class="footer-social">
-                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
-                  </div>
-              </div><!--widget -->
-          </div><!-- end col -->
-
+              </div>
+          @endforelse
       </div><!-- end row -->
   </div><!-- end container -->
 </div>

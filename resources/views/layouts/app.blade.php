@@ -94,7 +94,22 @@
                         <ul class="nav navbar-nav">
                           <li onclick="check_active('Home')"><a id="Home" href="{{ url('/') }}">Home</a></li>
                           <li onclick="check_active('Services')"><a id="Services" data-scroll href="{{ url('/services') }}">Services</a></li>
-                          <li onclick="check_active('Doctors')"><a id="Doctors" data-scroll href="{{ url('docters') }}">Doctors</a></li>
+                          <li onclick="check_active('Doctors')">
+                            @auth
+                              @if(auth()->user()->role_id == 1)
+                                <a id="Doctors" href="{{ route('admin_doctors') }}">Doctors</a>
+                              @else
+                                <a id="Doctors" data-scroll href="{{ url('docters') }}">Doctors</a>
+                              @endif
+                            @else
+                              <a id="Doctors" data-scroll href="{{ url('docters') }}">Doctors</a>
+                            @endauth
+                          </li>
+                          @auth
+                            @if(auth()->user()->role_id == 1)
+                              <li onclick="check_active('manage-doctors')"><a id="manage-doctors" href="{{ route('admin.doctors.index') }}" style="color: #ffc107; font-weight: bold;">📋 Manage Doctors</a></li>
+                            @endif
+                          @endauth
                           <li onclick="check_active('About')"><a id="About" data-scroll href="{{ url('/about') }}">About us</a></li>
                           <li onclick="check_active('Contact')"><a id="Contact" data-scroll href="{{ url('contact') }}">Contact</a></li>
 
@@ -104,8 +119,9 @@
                          @endguest
  
                          @auth
-                           @if (auth()->user()->is_super_admin)
+                           @if (auth()->user()->role_id == 1)
                              <li onclick="check_active('admin-area')"><a id="admin-area" data-scroll href="{{ route('admin_settings') }}">Admin Area</a></li>
+                             <li onclick="check_active('admin-doctors')"><a id="admin-doctors" href="{{ route('admin.doctors.index') }}">Manage Doctors</a></li>
                            @endif
                              <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

@@ -1,4 +1,4 @@
-# Hospital Management System
+# CareBase
 
 ![Front End](FrontEnd.png)
 

@@ -14,8 +14,22 @@ class Appointmentform extends Component
     public $address;
     public $message;
 
+    public function mount()
+    {
+        // Redirect to login if user is not authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+    }
+
     public function store_requested_appointment()
     {
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            session()->flash('error', 'Please log in to book an appointment.');
+            return redirect()->route('login');
+        }
+
         $this->validate([
             'name' => 'required|',
             'email' => 'required|email',
@@ -32,7 +46,7 @@ class Appointmentform extends Component
             'phone'         => $this->phone,
             'stime'       => $this->stime,
             'address'       => $this->address,
-            'doctor'       => $this->doctor,
+            'doctor_id'       => $this->doctor,
             'message' => $this->message,
         ]);
 

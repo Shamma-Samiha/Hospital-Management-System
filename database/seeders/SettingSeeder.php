@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
         $settings = [
             [
                 'key' => 'title',
-                'value' => 'Hospital Management System'
+                'value' => 'CareBase'
             ],
             [
                 'key' => 'business_email',

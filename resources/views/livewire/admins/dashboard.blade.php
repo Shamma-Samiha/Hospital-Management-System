@@ -101,4 +101,14 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-user-md"></i> Total Doctors</h5>
+                    <p class="card-text">{{ $doctors }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

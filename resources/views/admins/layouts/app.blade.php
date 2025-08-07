@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Laravel</title>
+    <title>CareBase Admin</title>
     <link href="{{ config('app.url') }}assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
     <link href="{{ config('app.url') }}assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
     <link href="{{ config('app.url') }}assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
@@ -32,6 +32,12 @@
                 {{-- @auth --}}
                 <li>
                     <a href="{{ route('admin_dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin_doctors') }}"><i class="fas fa-user-md"></i> Doctors</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.doctors.index') }}"><i class="fas fa-user-md"></i> Manage Doctors</a>
                 </li>
                 {{-- <li>
                     <a href="{{ route('admin_docters') }}"><i class="fas fa-file-alt"></i>Docters</a>
@@ -155,7 +161,9 @@
                 <div class="container">
                     <br><br><br>
 
-                    {{ $slot }}
+                    @isset($slot)
+                        {{ $slot }}
+                    @endisset
 
                     @yield('admin_content')
                     @livewireScripts

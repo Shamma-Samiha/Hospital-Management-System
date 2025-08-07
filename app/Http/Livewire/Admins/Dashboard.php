@@ -21,6 +21,7 @@ class Dashboard extends Component
             'beds'=>\App\Models\beds::count(),
             'subscribers'=>\App\Models\subscriber::count(),
             'requestedAppointment'=>\App\Models\requestedAppointment::count(),
+            'doctors'=>\App\Models\doctor::count(),
         ])->layout('admins.layouts.app');
     }
 }

@@ -13,18 +13,14 @@ Route::get('/register', function () {
 Route::post('/register', [UserController::class, 'register'])->name('register');
 
 // testing gpush
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/about', function () {
     return view('about');
 });
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get("/docters", function () {
-    return view('docter');
-});
+Route::get("/docters", [App\Http\Controllers\DoctorsController::class, 'index']);
 Route::get('/app', function () {
     return view('layouts.app');
 });
@@ -44,6 +40,16 @@ Route::middleware(['auth', 'checksuperadmin'])->group(function () {
         Route::get('/dashboard', App\Http\Livewire\Admins\Dashboard::class)->name('admin_dashboard');
         Route::get('settings', App\Http\Livewire\Admins\Settings::class)->name('admin_settings');
         Route::get('nurses', App\Http\Livewire\Admins\Nurses::class)->name('nurses');
+        Route::get('/doctors', App\Http\Livewire\Admins\Doctors::class)->name('admin_doctors');
+        
+        // Admin Doctor Management Routes
+        Route::get('/doctors-manage', [App\Http\Controllers\AdminDoctorController::class, 'index'])->name('admin.doctors.index');
+        Route::get('/doctors-manage/create', [App\Http\Controllers\AdminDoctorController::class, 'create'])->name('admin.doctors.create');
+        Route::post('/doctors-manage', [App\Http\Controllers\AdminDoctorController::class, 'store'])->name('admin.doctors.store');
+        Route::get('/doctors-manage/{id}/edit', [App\Http\Controllers\AdminDoctorController::class, 'edit'])->name('admin.doctors.edit');
+        Route::put('/doctors-manage/{id}', [App\Http\Controllers\AdminDoctorController::class, 'update'])->name('admin.doctors.update');
+        Route::delete('/doctors-manage/{id}', [App\Http\Controllers\AdminDoctorController::class, 'destroy'])->name('admin.doctors.destroy');
+        
         // Route::get('/docters', App\Http\Livewire\Admins\Docter::class)->name('admin_docters');
         Route::get('/operationsreport', App\Http\Livewire\Admins\Operationreport::class)->name('admin_operations_report');
         Route::get('/patients', App\Http\Livewire\Admins\Patients::class)->name('admin_patients');
