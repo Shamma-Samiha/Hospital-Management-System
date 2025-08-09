@@ -2,7 +2,7 @@
     <div class="content">
         <div class="container">
             <div class="page-title">
-                <h3 class="text-info">{{ env('APP_NAME') }} Patients</h3>
+                <h3 class="text-info">CareBase Patients</h3>
             </div>
             <div>
                 @if (session()->has('message'))

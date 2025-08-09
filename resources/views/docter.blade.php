@@ -5,7 +5,7 @@
     <div class="container">
   
      <div class="heading">
-           <span class="logo"><img src="images/logo.png" alt="#"></span>
+           <span class="icon-logo"><img src="images/icon-logo.png" alt="#"></span>
            <h2>The CareBase Hospital</h2>
         </div>
   
@@ -59,6 +59,9 @@
                         </div>
                     </div><!--widget -->
                 </div><!-- end col -->
+                @if(($index + 1) % 3 == 0)
+                    <div class="clearfix"></div>
+                @endif
             @empty
                 <div class="col-12">
                     <div class="alert alert-info text-center">

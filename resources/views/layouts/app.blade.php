@@ -94,22 +94,7 @@
                         <ul class="nav navbar-nav">
                           <li onclick="check_active('Home')"><a id="Home" href="{{ url('/') }}">Home</a></li>
                           <li onclick="check_active('Services')"><a id="Services" data-scroll href="{{ url('/services') }}">Services</a></li>
-                          <li onclick="check_active('Doctors')">
-                            @auth
-                              @if(auth()->user()->role_id == 1)
-                                <a id="Doctors" href="{{ route('admin_doctors') }}">Doctors</a>
-                              @else
-                                <a id="Doctors" data-scroll href="{{ url('docters') }}">Doctors</a>
-                              @endif
-                            @else
-                              <a id="Doctors" data-scroll href="{{ url('docters') }}">Doctors</a>
-                            @endauth
-                          </li>
-                          @auth
-                            @if(auth()->user()->role_id == 1)
-                              <li onclick="check_active('manage-doctors')"><a id="manage-doctors" href="{{ route('admin.doctors.index') }}" style="color: #ffc107; font-weight: bold;">📋 Manage Doctors</a></li>
-                            @endif
-                          @endauth
+                          <!-- Removed Doctors section from admin sidebar -->
                           <li onclick="check_active('About')"><a id="About" data-scroll href="{{ url('/about') }}">About us</a></li>
                           <li onclick="check_active('Contact')"><a id="Contact" data-scroll href="{{ url('contact') }}">Contact</a></li>
 
@@ -149,7 +134,7 @@
                     <div class="logo padding">
                         <a href="{{ url('/') }}"><img src="{{ isset($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/logo.png') }}"
                                 alt=""></a>
-                        <p>{{ $settings["description"] ?? 'hi this isLocavore pork belly scen ester pine est chill wave microdosing pop uple itarian cliche artisan.' }}
+                        <p>{{ $settings["description"] ?? 'This is CareBase. A centralized healthcare system, providing best services since 2020.' }}
                         </p>
                     </div>
                 </div>
@@ -157,13 +142,13 @@
                     <div class="footer-info padding">
                         <h3>CONTACT US</h3>
                         <p><i class="fa fa-map-marker"
-                                aria-hidden="true"></i>{{ $settings["address"] ?? 'distric abc P/O xyz sorana' }}
+                                aria-hidden="true"></i>{{ $settings["address"] ?? 'Sreemongol, Sylhet , Bangladesh' }}
                         </p>
                         <p><i class="fa fa-paper-plane"
-                                aria-hidden="true"></i>{{ $settings["business_email"] ?? 'tauseed@test.com' }}
+                                aria-hidden="true"></i>{{ $settings["business_email"] ?? 'carebase@gmail.com' }}
                         </p>
                         <p><i class="fa fa-phone"
-                                aria-hidden="true"></i>{{ $settings["business_phone"] ?? '123 123 123' }}</p>
+                                aria-hidden="true"></i>{{ $settings["business_phone"] ?? '+880 1234543234' }}</p>
                     </div>
                 </div>
                 @livewire('subscribe')

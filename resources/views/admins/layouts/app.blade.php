@@ -34,14 +34,8 @@
                     <a href="{{ route('admin_dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin_doctors') }}"><i class="fas fa-user-md"></i> Doctors</a>
+                    <a href="{{ route('admin.doctors.index') }}"><i class="fas fa-user-md"></i>Manage Doctors</a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.doctors.index') }}"><i class="fas fa-user-md"></i> Manage Doctors</a>
-                </li>
-                {{-- <li>
-                    <a href="{{ route('admin_docters') }}"><i class="fas fa-file-alt"></i>Docters</a>
-                </li> --}}
                 <li>
                     <a href="{{ route('admin_operations_report') }}"><i class="fas fa-file-alt"></i>Operation
                         report</a>
