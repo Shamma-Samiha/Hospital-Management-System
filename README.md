@@ -34,9 +34,6 @@ It combines **healthcare services** with **database management** to offer a smoo
 ### 🔹 Contact Page
 ![Contact Page](contact_page.png)
 
-### 🔹 Get in Touch Page
-![Get in Touch](get_in_touch.png)
-
 ### 🔹 Book Appointment
 ![Book Appointment](book_appoinment.png)
 
